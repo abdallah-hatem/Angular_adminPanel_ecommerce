@@ -1,0 +1,9 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input type="text" id="name" formControlName="name" />
+
+  <label for="hex">Hex:</label>
+  <input type="text" id="hex" formControlName="hex" />
+
+  <button type="submit" [disabled]="myForm.invalid">Submit</button>
+</form>

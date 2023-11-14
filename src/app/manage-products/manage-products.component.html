@@ -1,0 +1,31 @@
+
+<dx-data-grid
+  id="gridContainer"
+  [dataSource]="products"
+  keyExpr="id"
+  [showBorders]="true"
+  [showRowLines]="true"
+  (onRowRemoved)="handleDelete($event)"
+>
+  <dxo-editing [useIcons]="true" [allowDeleting]="true"> </dxo-editing>
+
+  <dxi-column
+    *ngFor="let el of columns"
+    dataField="{{ el.dataField }}"
+    caption="{{ el.caption }}"
+    dataType="{{ el.dataType }}"
+    alignment="{{ el.alignment }}"
+  >
+  </dxi-column>
+
+  <dxi-column type="buttons">
+    <dxi-button
+      [onClick]="onEditClick"
+      hint="Edit"
+      icon="edit"
+      [visible]="true"
+      [disabled]="false"
+    ></dxi-button>
+    <dxi-button name="delete"></dxi-button>
+  </dxi-column>
+</dx-data-grid>

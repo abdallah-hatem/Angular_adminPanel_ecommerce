@@ -1,0 +1,18 @@
+<dx-data-grid
+  id="gridContainer"
+  [dataSource]="categories"
+  keyExpr="id"
+  [columns]="['name']"
+  [showBorders]="true"
+  [showRowLines]="true"
+  (onRowUpdated)="handleUpdate($event)"
+  (onRowRemoved)="handleDelete($event)"
+>
+  <dxo-editing
+    mode="form"
+    [allowUpdating]="true"
+    [allowDeleting]="true"
+    [useIcons]="true"
+  >
+  </dxo-editing>
+</dx-data-grid>

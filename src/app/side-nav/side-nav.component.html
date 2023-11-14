@@ -1,0 +1,32 @@
+<mat-nav-list>
+  <header>
+    <h2>Admin Panel</h2>
+  </header>
+
+  <mat-divider></mat-divider>
+
+  <div *ngFor="let item of listItems">
+    <mat-expansion-panel *ngIf="item.subData; else elseBlock">
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ item.name }} </mat-panel-title>
+      </mat-expansion-panel-header>
+      
+      <a
+        *ngFor="let item of item.subData"
+        mat-list-item
+        routerLink="{{ item.path }}"
+        routerLinkActive="list-item-active"
+        >{{ item.name }}</a
+      >
+    </mat-expansion-panel>
+
+    <ng-template #elseBlock>
+      <a
+        mat-list-item
+        routerLink="{{ item.path }}"
+        routerLinkActive="list-item-active"
+        >{{ item.name }}</a
+      >
+    </ng-template>
+  </div>
+</mat-nav-list>
