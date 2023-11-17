@@ -1,13 +1,14 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SizeService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:8000';
+  private baseUrl = environment.apiUrl;
 
   public getSizes(): Observable<any> {
     const url = `${this.baseUrl}/sizes`;

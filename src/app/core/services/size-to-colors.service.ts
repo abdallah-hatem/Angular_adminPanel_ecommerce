@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SizeToColorsAdd, SizeToColorsUpdate } from '../models/size-to-colors';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SizeToColorsService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:8000';
+  private baseUrl = environment.apiUrl;
 
   public deleteStc(id: number) {
     const url = `${this.baseUrl}/size-to-colors/${id}`;

@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Product, ProductUpdate } from '../models/product';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,8 @@ import { CookieService } from 'ngx-cookie-service';
 export class ProductService {
   private http = inject(HttpClient);
   private cookieService = inject(CookieService);
-
-  private baseUrl = 'http://localhost:8000';
+  
+  private baseUrl = environment.apiUrl;
 
   private headers = new HttpHeaders({
     Authorization: `Bearer ${this.getToken()}`,

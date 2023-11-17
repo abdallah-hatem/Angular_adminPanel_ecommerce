@@ -2,17 +2,19 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   cookieService = inject(CookieService);
+  http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  baseUrl = environment.apiUrl;
 
   public login(data: { email: string; password: string }): Observable<any> {
-    const url = 'http://localhost:8000/auth/login';
+    const url = `${this.baseUrl}/auth/login`;
     return this.http.post<any>(url, data);
   }
 
@@ -21,7 +23,7 @@ export class AuthService {
     email: string;
     password: string;
   }): Observable<any> {
-    const url = 'http://localhost:8000/auth/signup';
+    const url = `${this.baseUrl}/auth/signup`;
     return this.http.post<any>(url, data);
   }
 
