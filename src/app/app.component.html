@@ -1,5 +1,5 @@
 <mat-drawer-container>
-  <mat-drawer mode="side" [opened]="sideBarOpen">
+  <mat-drawer [mode]="this.isMobile() ? 'over' : 'side'" [opened]="sideBarOpen">
     <app-side-nav></app-side-nav>
   </mat-drawer>
 

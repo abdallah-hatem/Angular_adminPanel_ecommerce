@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { SideNavService } from '../../services/side-nav.service';
+import { IsMobileService } from '../../services/is-mobile.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -7,7 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./side-nav.component.scss'],
 })
 export class SideNavComponent {
-  route = inject(Router);
+  private route = inject(Router);
+  private sideNavService = inject(SideNavService);
+  private isMobile = inject(IsMobileService);
 
   listItems = [
     { name: 'Login', path: '/login' },
@@ -46,7 +50,7 @@ export class SideNavComponent {
 
   constructor() {}
 
-  handleClick(e: number) {
+  public handleClick(e: number) {
     this.selectedItem = e;
     this.getCurrentPath();
   }
@@ -57,5 +61,11 @@ export class SideNavComponent {
 
   checkUrl(array: any[]): boolean {
     return array.filter((el) => el.path === this.getCurrentPath()).length > 0;
+  }
+
+  public collapse() {
+    if (this.isMobile.isMobile()) {
+      this.sideNavService.setCollapsed(false);
+    }
   }
 }

@@ -20,6 +20,7 @@
     @for (el of item.subData; track $index) {
 
     <a
+      (click)="collapse()"
       mat-list-item
       routerLink="{{ el.path }}"
       routerLinkActive="list-item-active"
@@ -29,6 +30,7 @@
   </mat-expansion-panel>
   } @else {
   <a
+    (click)="collapse()"
     mat-list-item
     routerLink="{{ item.path }}"
     routerLinkActive="list-item-active"
