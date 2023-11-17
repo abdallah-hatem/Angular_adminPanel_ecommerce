@@ -1,0 +1,22 @@
+<nav style="display: flex; justify-content: space-between; align-items: center">
+  <button>
+    <mat-icon
+      (click)="toggleSideNav()"
+      aria-hidden="false"
+      aria-label="Hamburger icon"
+      fontIcon="menu"
+    ></mat-icon>
+  </button>
+
+  <app-button-comp
+    title="Logout"
+    [disabled]="!isLoggedIn()"
+    (buttonClick)="logout()"
+    [style]="{
+      'background-color': 'red',
+      color: 'white',
+      cursor: 'pointer',
+      display: !isLoggedIn() ? 'none' : 'block'
+    }"
+  ></app-button-comp>
+</nav>

@@ -7,12 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './login/login.component';
-import { ProductsComponent } from './products/products.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { HomeComponent } from './home/home.component';
-import { SideNavComponent } from './side-nav/side-nav.component';
+import { LoginComponent } from './auth/pages/login/login.component';
+import { ProductsComponent } from './contnet/pages/product/products/products.component';
+import { NavBarComponent } from './shared/layout/nav-bar/nav-bar.component';
+import { HomeComponent } from './contnet/pages/home/home.component';
+import { SideNavComponent } from './shared/layout/side-nav/side-nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -23,29 +22,30 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './auth/pages/signup/signup.component';
 import { CookieService } from 'ngx-cookie-service';
-import { SizeComponent } from './size/size.component';
-import { ManageSizeComponent } from './manage-size/manage-size.component';
+import { SizeComponent } from './contnet/pages/sizes/size/size.component';
+import { ManageSizeComponent } from './contnet/pages/sizes/manage-size/manage-size.component';
 import {
   DxDataGridModule,
   DxListModule,
   DxDropDownBoxModule,
   DxTagBoxModule,
 } from 'devextreme-angular';
-import { ManageColorsComponent } from './manage-colors/manage-colors.component';
-import { ColorComponent } from './color/color.component';
-import { ManageCategoriesComponent } from './manage-categories/manage-categories.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { ManageProductsComponent } from './manage-products/manage-products.component';
-import { AddProductDetailsComponent } from './add-product-details/add-product-details.component';
-import { EditProductDetailsComponent } from './edit-product-details/edit-product-details.component';
-import { EditProductComponent } from './edit-product/edit-product.component';
+import { ManageColorsComponent } from './contnet/pages/colors/manage-colors/manage-colors.component';
+import { ColorComponent } from './contnet/pages/colors/color/color.component';
+import { ManageCategoriesComponent } from './contnet/pages/category/manage-categories/manage-categories.component';
+import { CategoriesComponent } from './contnet/pages/category/categories/categories.component';
+import { ManageProductsComponent } from './contnet/pages/product/manage-products/manage-products.component';
+import { AddProductDetailsComponent } from './contnet/pages/product/components/add-product-details/add-product-details.component';
+import { EditProductDetailsComponent } from './contnet/pages/product/components/edit-product-details/edit-product-details.component';
+import { EditProductComponent } from './contnet/pages/product/edit-product/edit-product.component';
+import { AddProductDetailsTableComponent } from './contnet/pages/product/components/add-product-details-table/add-product-details-table.component';
+import { ButtonCompComponent } from './shared/components/button-comp/button-comp.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     LoginComponent,
     ProductsComponent,
     NavBarComponent,
@@ -82,6 +82,8 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     DxListModule,
     DxDropDownBoxModule,
     DxTagBoxModule,
+    AddProductDetailsTableComponent,
+    ButtonCompComponent,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
