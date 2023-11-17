@@ -23,7 +23,7 @@
     "devextreme": "23.1.6",
     "devextreme-angular": "23.1.6",
     "devextreme-aspnet-data-nojquery": "^3.0.0",
-    "ngx-cookie-service": "^16.0.1",
+    "ngx-cookie-service": "^17.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
