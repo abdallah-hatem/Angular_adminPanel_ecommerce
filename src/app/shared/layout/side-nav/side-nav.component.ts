@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./side-nav.component.scss'],
 })
 export class SideNavComponent {
+  route = inject(Router);
+
   listItems = [
     { name: 'Login', path: '/login' },
     { name: 'Signup', path: '/signup' },
@@ -38,4 +41,21 @@ export class SideNavComponent {
       ],
     },
   ];
+
+  selectedItem: number;
+
+  constructor() {}
+
+  handleClick(e: number) {
+    this.selectedItem = e;
+    this.getCurrentPath();
+  }
+
+  getCurrentPath(): String {
+    return this.route.url;
+  }
+
+  checkUrl(array: any[]): boolean {
+    return array.filter((el) => el.path === this.getCurrentPath()).length > 0;
+  }
 }

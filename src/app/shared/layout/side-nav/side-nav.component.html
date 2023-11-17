@@ -5,28 +5,33 @@
 
   <mat-divider></mat-divider>
 
-  <div *ngFor="let item of listItems">
-    <mat-expansion-panel *ngIf="item.subData; else elseBlock">
-      <mat-expansion-panel-header>
-        <mat-panel-title> {{ item.name }} </mat-panel-title>
-      </mat-expansion-panel-header>
-      
-      <a
-        *ngFor="let item of item.subData"
-        mat-list-item
-        routerLink="{{ item.path }}"
-        routerLinkActive="list-item-active"
-        >{{ item.name }}</a
-      >
-    </mat-expansion-panel>
+  @for (item of listItems; track $index) { @if (item.subData) {
+  <mat-expansion-panel
+    [ngStyle]="{
+      'background-color': checkUrl(item.subData) ? '#3c3c3c' : 'transparent'
+    }"
+    (afterExpand)="handleClick($index)"
+    [expanded]="$index === selectedItem"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ item.name }} </mat-panel-title>
+    </mat-expansion-panel-header>
 
-    <ng-template #elseBlock>
-      <a
-        mat-list-item
-        routerLink="{{ item.path }}"
-        routerLinkActive="list-item-active"
-        >{{ item.name }}</a
-      >
-    </ng-template>
-  </div>
+    @for (el of item.subData; track $index) {
+
+    <a
+      mat-list-item
+      routerLink="{{ el.path }}"
+      routerLinkActive="list-item-active"
+      >{{ el.name }}</a
+    >
+    }
+  </mat-expansion-panel>
+  } @else {
+  <a
+    mat-list-item
+    routerLink="{{ item.path }}"
+    routerLinkActive="list-item-active"
+    >{{ item.name }}</a
+  >} }
 </mat-nav-list>
