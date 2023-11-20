@@ -5,6 +5,14 @@ import { SizeService } from '../../../../core/services/size.service';
 import { CategoriesService } from '../../../../core/services/categories.service';
 import { Product } from '../../../../core/models/product';
 
+interface Inputs {
+  labelFor: string;
+  labelName: string;
+  inputType: string;
+  inputId: string;
+  formControlName: string;
+}
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -16,11 +24,40 @@ export class ProductsComponent {
   sizeService = inject(SizeService);
   categoryService = inject(CategoriesService);
 
-  categories: [{ id: 1; name: '' }];
-
-  stcData = [];
-
+  categories: [{ id: 1; name: 'test' }];
+  stcData: any[] = [];
   finalData: Product;
+
+  public inputs: Inputs[] = [
+    {
+      labelFor: 'name',
+      labelName: 'Name:',
+      inputType: 'name',
+      inputId: 'name',
+      formControlName: 'name',
+    },
+    {
+      labelFor: 'price',
+      labelName: 'Price:',
+      inputType: 'price',
+      inputId: 'price',
+      formControlName: 'price',
+    },
+    {
+      labelFor: 'desc',
+      labelName: 'Desc:',
+      inputType: 'desc',
+      inputId: 'desc',
+      formControlName: 'desc',
+    },
+    // {
+    //   labelFor: 'category',
+    //   labelName: 'Category:',
+    //   inputType: 'category',
+    //   inputId: 'category',
+    //   formControlName: 'category',
+    // },
+  ];
 
   ngOnInit() {
     this.myForm = new FormGroup({

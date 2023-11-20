@@ -7,6 +7,14 @@ import { Product, ProductUpdate } from '../../../../core/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from '../../../../core/models/category';
 
+interface Inputs {
+  labelFor: string;
+  labelName: string;
+  inputType: string;
+  inputId: string;
+  formControlName: string;
+}
+
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
@@ -30,6 +38,30 @@ export class EditProductComponent {
   finalData: any;
   productData: object;
   tableDefData: any;
+
+  public inputs: Inputs[] = [
+    {
+      labelFor: 'name',
+      labelName: 'Name:',
+      inputType: 'text',
+      inputId: 'name',
+      formControlName: 'name',
+    },
+    {
+      labelFor: 'price',
+      labelName: 'Price:',
+      inputType: 'number',
+      inputId: 'price',
+      formControlName: 'price',
+    },
+    {
+      labelFor: 'desc',
+      labelName: 'Desc:',
+      inputType: 'text',
+      inputId: 'desc',
+      formControlName: 'desc',
+    },
+  ];
 
   @Input() productId: number;
 

@@ -1,6 +1,17 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <label for="name">Name:</label>
-  <input type="text" id="name" formControlName="name" />
+<app-card title="Add categories">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    @for (el of inputs; track $index) {
 
-  <button type="submit" [disabled]="myForm.invalid">Submit</button>
-</form>
+      <app-input-comp
+        [labelFor]="el.labelFor"
+        [labelName]="el.labelName"
+        [inputType]="el.inputType"
+        [inputId]="el.inputId"
+        [formControlName]="el.formControlName"
+      >
+      </app-input-comp>
+      }
+
+    <button type="submit" [disabled]="myForm.invalid">Submit</button>
+  </form>
+</app-card>

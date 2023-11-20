@@ -1,4 +1,4 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <label for="name">Name:</label>
   <input type="text" id="name" formControlName="name" />
 
@@ -16,19 +16,53 @@
   </select>
 
   <button type="submit" [disabled]="myForm.invalid">Submit</button>
-</form>
+</form> -->
 
-<br />
-<br />
-<br />
+<app-card title="Add product">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    @for (el of inputs; track $index) {
+
+    <app-input-comp
+      [labelFor]="el.labelFor"
+      [labelName]="el.labelName"
+      [inputType]="el.inputType"
+      [inputId]="el.inputId"
+      [formControlName]="el.formControlName"
+      [style]="{ 'margin-top': '20px' }"
+    >
+    </app-input-comp>
+    }
+
+    <div class="select-cat">
+      <label for="cat">Category:</label>
+      <select
+        name="cat"
+        class="custom-select mb-3"
+        formControlName="categoryId"
+        title="categories"
+      >
+        <option value="">Choose Category</option>
+        <option *ngFor="let cat of categories" [ngValue]="cat.id">
+          {{ cat.name }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="myForm.invalid">Submit</button>
+  </form>
+</app-card>
 
 <!-- Add product Details Table -->
-<app-add-product-details-table
-  [productId]="productId"
-></app-add-product-details-table>
+<app-card [style]="{ 'margin-top': '50px' }" title="Add product details">
+  <app-add-product-details-table
+    [productId]="productId"
+  ></app-add-product-details-table>
+</app-card>
 
 <!-- Edit product Details Table -->
-<app-edit-product-details
-  [defData]="tableDefData"
-  (stc)="getStcData($event)"
-></app-edit-product-details>
+<app-card [style]="{ 'margin-top': '50px','margin-bottom': '50px'}" title="Edit product details">
+  <app-edit-product-details
+    [defData]="tableDefData"
+    (stc)="getStcData($event)"
+  ></app-edit-product-details>
+</app-card>

@@ -1,0 +1,46 @@
+form {
+  display: flex;
+  flex-direction: column;
+
+  .input-item {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    align-self: center;
+    input {
+      width: 90%;
+      margin-left: 1px;
+    }
+  }
+  button {
+    width: 15%;
+    align-self: flex-end;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+
+  .select-cat {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin-top: 20px;
+    select {
+      width: 81%;
+      margin-left: 1px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  form {
+    button {
+      width: 30%;
+    }
+    .select-cat {
+      width: 100%;
+      select {
+        width: 76%;
+      }
+    }
+  }
+}

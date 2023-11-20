@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 import { SignupComponent } from './auth/pages/signup/signup.component';
 import { CookieService } from 'ngx-cookie-service';
@@ -42,6 +43,8 @@ import { EditProductDetailsComponent } from './contnet/pages/product/components/
 import { EditProductComponent } from './contnet/pages/product/edit-product/edit-product.component';
 import { AddProductDetailsTableComponent } from './contnet/pages/product/components/add-product-details-table/add-product-details-table.component';
 import { ButtonCompComponent } from './shared/components/button-comp/button-comp.component';
+import { CardComponent } from './shared/components/card/card.component';
+import { InputCompComponent } from './shared/components/input-comp/input-comp.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,7 @@ import { ButtonCompComponent } from './shared/components/button-comp/button-comp
     AddProductDetailsComponent,
     EditProductDetailsComponent,
     EditProductComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +88,8 @@ import { ButtonCompComponent } from './shared/components/button-comp/button-comp
     DxTagBoxModule,
     AddProductDetailsTableComponent,
     ButtonCompComponent,
+    MatCardModule,
+    InputCompComponent
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

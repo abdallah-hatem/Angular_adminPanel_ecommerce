@@ -12,7 +12,6 @@ import { ManageColorsComponent } from './contnet/pages/colors/manage-colors/mana
 import { CategoriesComponent } from './contnet/pages/category/categories/categories.component';
 import { ManageCategoriesComponent } from './contnet/pages/category/manage-categories/manage-categories.component';
 import { ManageProductsComponent } from './contnet/pages/product/manage-products/manage-products.component';
-import { EditProductDetailsComponent } from './contnet/pages/product/components/edit-product-details/edit-product-details.component';
 import { EditProductComponent } from './contnet/pages/product/edit-product/edit-product.component';
 
 const routes: Routes = [
@@ -31,7 +30,9 @@ const routes: Routes = [
     component: ManageSizeComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'add-colors', component: ColorComponent, canActivate: [AuthGuard] },
+  { path: 'add-colors', component: ColorComponent, 
+  canActivate: [AuthGuard] 
+},
   {
     path: 'manage-colors',
     component: ManageColorsComponent,

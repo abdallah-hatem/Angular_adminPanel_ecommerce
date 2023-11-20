@@ -4,17 +4,42 @@ import { AuthService } from '../../../core/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
+interface Inputs {
+  labelFor: string;
+  labelName: string;
+  inputType: string;
+  inputId: string;
+  formControlName: string;
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  myForm: FormGroup;
-
   cookieService = inject(CookieService);
   authService = inject(AuthService);
   router = inject(Router);
+
+  myForm: FormGroup;
+
+  public inputs: Inputs[] = [
+    {
+      labelFor: 'email',
+      labelName: 'Email:',
+      inputType: 'email',
+      inputId: 'email',
+      formControlName: 'email',
+    },
+    {
+      labelFor: 'password',
+      labelName: 'Password:',
+      inputType: 'password',
+      inputId: 'password',
+      formControlName: 'password',
+    },
+  ];
 
   ngOnInit() {
     this.myForm = new FormGroup({

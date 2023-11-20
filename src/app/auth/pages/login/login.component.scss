@@ -1,2 +1,19 @@
-mat-form-field{
+form {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    width: 15%;
+    align-self: flex-end;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 600px) {
+  form {
+    button {
+      width: 30%;
+    }
+  }
 }

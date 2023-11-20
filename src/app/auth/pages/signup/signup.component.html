@@ -1,12 +1,17 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <label for="name">Name:</label>
-  <input type="text" id="name" formControlName="name" />
+<app-card title="Signup">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    @for (el of inputs; track $index) {
+    <app-input-comp
+      [labelFor]="el.labelFor"
+      [labelName]="el.labelName"
+      [inputType]="el.inputType"
+      [inputId]="el.inputId"
+      [style]="{ 'margin-top': '20px' }"
+      formControlName="{{ el.formControlName }}"
+    >
+    </app-input-comp>
+    }
 
-  <label for="email">Email:</label>
-  <input type="email" id="email" formControlName="email" />
-
-  <label for="password">Password:</label>
-  <input type="password" id="password" formControlName="password" />
-
-  <button type="submit" [disabled]="myForm.invalid">Submit</button>
-</form>
+    <button type="submit" [disabled]="myForm.invalid">Submit</button>
+  </form>
+</app-card>

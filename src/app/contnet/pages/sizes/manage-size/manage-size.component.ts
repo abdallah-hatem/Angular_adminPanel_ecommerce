@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { SizeService } from '../../../../core/services/size.service';
+import { IsMobileService } from 'src/app/shared/services/is-mobile.service';
 
 @Component({
   selector: 'app-manage-size',
@@ -8,10 +9,13 @@ import { SizeService } from '../../../../core/services/size.service';
 })
 export class ManageSizeComponent implements OnInit {
   sizeService = inject(SizeService);
+  isMobileService = inject(IsMobileService);
 
   sizes = [];
+  isMobile: boolean = false;
 
   ngOnInit(): void {
+    this.isMobile = this.isMobileService.isMobile();
     this.getSizes();
   }
 

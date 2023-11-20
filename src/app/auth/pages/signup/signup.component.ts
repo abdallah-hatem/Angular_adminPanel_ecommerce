@@ -1,6 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+
+interface Inputs {
+  labelFor: string;
+  labelName: string;
+  inputType: string;
+  inputId: string;
+  formControlName: string;
+}
 
 @Component({
   selector: 'app-signup',
@@ -8,9 +16,32 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
+  authService = inject(AuthService);
   myForm: FormGroup;
 
-  constructor(private auth: AuthService) {}
+  public inputs: Inputs[] = [
+    {
+      labelFor: 'name',
+      labelName: 'Name:',
+      inputType: 'name',
+      inputId: 'name',
+      formControlName: 'name',
+    },
+    {
+      labelFor: 'email',
+      labelName: 'Email:',
+      inputType: 'email',
+      inputId: 'email',
+      formControlName: 'email',
+    },
+    {
+      labelFor: 'password',
+      labelName: 'Password:',
+      inputType: 'password',
+      inputId: 'password',
+      formControlName: 'password',
+    },
+  ];
 
   ngOnInit() {
     this.myForm = new FormGroup({
@@ -22,7 +53,7 @@ export class SignupComponent {
 
   onSubmit() {
     console.log(this.myForm.value);
-    this.auth
+    this.authService
       .signup(this.myForm.value)
       .subscribe((res: any) => console.log(res));
   }

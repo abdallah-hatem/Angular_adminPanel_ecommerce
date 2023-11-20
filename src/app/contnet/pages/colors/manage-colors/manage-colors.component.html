@@ -1,18 +1,20 @@
-<dx-data-grid
-  id="gridContainer"
-  [dataSource]="colors"
-  keyExpr="id"
-  [columns]="['name', 'hex']"
-  [showBorders]="true"
-  [showRowLines]="true"
-  (onRowUpdated)="handleUpdate($event)"
-  (onRowRemoved)="handleDelete($event)"
->
-  <dxo-editing
-    mode="form"
-    [allowUpdating]="true"
-    [allowDeleting]="true"
-    [useIcons]="true"
+<app-card title="Manage colors">
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="colors"
+    keyExpr="id"
+    [columns]="['name', 'hex']"
+    [showBorders]="true"
+    [showRowLines]="true"
+    (onRowUpdated)="handleUpdate($event)"
+    (onRowRemoved)="handleDelete($event)"
   >
-  </dxo-editing>
-</dx-data-grid>
+    <dxo-editing
+      mode="form"
+      [allowUpdating]="true"
+      [allowDeleting]="true"
+      [useIcons]="true"
+    >
+    </dxo-editing>
+  </dx-data-grid>
+</app-card>
