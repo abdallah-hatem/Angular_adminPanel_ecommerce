@@ -25,13 +25,10 @@ export class EditProductComponent {
   sizeService = inject(SizeService);
   categoryService = inject(CategoriesService);
   route = inject(ActivatedRoute);
-
-  myForm = new FormGroup({
-    name: new FormControl(String, [Validators.required]),
-    price: new FormControl(Number, [Validators.required]),
-    desc: new FormControl(String, [Validators.required]),
-    categoryId: new FormControl(Number, [Validators.required]),
-  });
+  
+  myForm: FormGroup;
+  
+  @Input() productId: number;
 
   categories: Category[];
   stcData = [];
@@ -63,7 +60,6 @@ export class EditProductComponent {
     },
   ];
 
-  @Input() productId: number;
 
   ngOnInit() {
     // Get product id from url
@@ -73,6 +69,13 @@ export class EditProductComponent {
     // get product details by id
     this.productService.getProductById(Number(id)).subscribe((data) => {
       this.productData = data.product;
+
+      this.myForm = new FormGroup({
+        name: new FormControl(String, [Validators.required]),
+        price: new FormControl(Number, [Validators.required]),
+        desc: new FormControl(String, [Validators.required]),
+        categoryId: new FormControl(Number, [Validators.required]),
+      });
 
       // fill form with product data
       this.myForm.setValue({

@@ -19,7 +19,7 @@
 </form> -->
 
 <app-card title="Add product">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <form *ngIf="myForm" [formGroup]="myForm" (ngSubmit)="onSubmit()">
     @for (el of inputs; track $index) {
 
     <app-input-comp
@@ -42,9 +42,11 @@
         title="categories"
       >
         <option value="">Choose Category</option>
-        <option *ngFor="let cat of categories" [ngValue]="cat.id">
+        @for (cat of categories; track $index) {
+        <option [ngValue]="cat.id">
           {{ cat.name }}
         </option>
+        }
       </select>
     </div>
 
@@ -60,7 +62,10 @@
 </app-card>
 
 <!-- Edit product Details Table -->
-<app-card [style]="{ 'margin-top': '50px','margin-bottom': '50px'}" title="Edit product details">
+<app-card
+  [style]="{ 'margin-top': '50px', 'margin-bottom': '50px' }"
+  title="Edit product details"
+>
   <app-edit-product-details
     [defData]="tableDefData"
     (stc)="getStcData($event)"

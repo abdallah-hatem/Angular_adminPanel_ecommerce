@@ -13,6 +13,13 @@ interface Inputs {
   formControlName: string;
 }
 
+interface FormType {
+  name: FormControl<string | null>;
+  price: FormControl<number | null>;
+  desc: FormControl<string | null>;
+  categoryId: FormControl<number | null>;
+}
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -32,21 +39,21 @@ export class ProductsComponent {
     {
       labelFor: 'name',
       labelName: 'Name:',
-      inputType: 'name',
+      inputType: 'text',
       inputId: 'name',
       formControlName: 'name',
     },
     {
       labelFor: 'price',
       labelName: 'Price:',
-      inputType: 'price',
+      inputType: 'number',
       inputId: 'price',
       formControlName: 'price',
     },
     {
       labelFor: 'desc',
       labelName: 'Desc:',
-      inputType: 'desc',
+      inputType: 'text',
       inputId: 'desc',
       formControlName: 'desc',
     },
@@ -60,11 +67,11 @@ export class ProductsComponent {
   ];
 
   ngOnInit() {
-    this.myForm = new FormGroup({
+    this.myForm = new FormGroup<FormType>({
       name: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required]),
+      price: new FormControl(null, [Validators.required]),
       desc: new FormControl('', [Validators.required]),
-      categoryId: new FormControl('', [Validators.required]),
+      categoryId: new FormControl(null, [Validators.required]),
     });
 
     this.categoryService.getCategories().subscribe((data) => {
@@ -77,22 +84,15 @@ export class ProductsComponent {
   }
 
   onSubmit() {
-    this.finalData = { ...this.myForm.value, sizeToColors: this.stcData };
+    this.finalData = {
+      ...this.myForm.value,
+      price: Number(this.myForm.get('price')?.value),
+      sizeToColors: this.stcData,
+    };
+    console.log(this.finalData, 'finalData');
 
     this.productService
       .addProduct(this.finalData)
       .subscribe((res) => console.log(res, 'res'));
-
-    console.log(this.finalData, 'finalData');
   }
-
-  // validStcData() {
-  //   const temp: any[] = [];
-
-  //   this.stcData.forEach((el: any) => {
-  //     temp.push(el.sizeId);
-  //   });
-
-  //   return new Set(temp).size === temp.length;
-  // }
 }
